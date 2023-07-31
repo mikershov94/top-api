@@ -1,8 +1,9 @@
+import { Types } from 'mongoose';
+
 export class CreateReviewDto {
-  _id: string;
   name: string;
   title: string;
   description: string;
   rating: number;
-  productId: string;
+  productId: Types.ObjectId;
 }
