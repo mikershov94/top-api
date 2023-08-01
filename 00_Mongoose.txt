@@ -1,5 +1,0 @@
-@Module({
-  providers: [UsersService],
-  imports: [MongooseModule.forFeature([{ name: UserName, schema: UserSchema }])]
-})
-export class UserModule {}
