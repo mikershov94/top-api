@@ -12,10 +12,10 @@ export const getMongoConfig = async (
 
 const getMongoString = (configService: ConfigService): string =>
   'mongodb://' +
-  // configService.get('MONGO_LOGIN') +
-  // ':' +
-  // configService.get('MONGO_PASSWORD') +
-  // '@' +
+  configService.get('MONGO_LOGIN') +
+  ':' +
+  configService.get('MONGO_PASSWORD') +
+  '@' +
   configService.get('MONGO_HOST') +
   ':' +
   configService.get('MONGO_PORT');
