@@ -46,8 +46,7 @@ describe('AppController (e2e)', () => {
       .send({ ...testDto, rating: 0 })
       .expect(400)
       .then(({ body }: request.Response) => {
-        createdId = body._id;
-        expect(createdId).toBeDefined();
+        console.log(body);
       });
   });
 
