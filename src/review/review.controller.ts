@@ -13,7 +13,7 @@ import {
 } from '@nestjs/common';
 import { ReviewModel } from './review.model';
 import { ReviewService } from './review.service';
-import { REVIEW_NOT_FOUND } from './review.constants';
+import { REVIEW_NOT_CREATED, REVIEW_NOT_FOUND } from './review.constants';
 import { JwtAuthGuard } from '../auth/guards/jwt.guard';
 import { UserEmail } from '../decorators/user-email.decorator';
 
@@ -21,10 +21,17 @@ import { UserEmail } from '../decorators/user-email.decorator';
 export class ReviewController {
   constructor(private readonly reviewService: ReviewService) {}
 
-  @UsePipes(new ValidationPipe())
+  @UsePipes(new ValidationPipe({ forbidUnknownValues: true }))
   @Post('create')
   async create(@Body() dto: Omit<ReviewModel, '_id'>) {
-    this.reviewService.create(dto);
+    const review = await this.reviewService.create(dto);
+    if (!review) {
+      throw new HttpException(
+        REVIEW_NOT_CREATED,
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
+    return review;
   }
 
   @Delete(':id')

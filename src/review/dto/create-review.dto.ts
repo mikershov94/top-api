@@ -11,9 +11,9 @@ export class CreateReviewDto {
   @IsString()
   description: string;
 
+  @IsNumber()
   @Max(5)
   @Min(1, { message: 'Рейтинг не может быть более 1' })
-  @IsNumber()
   rating: number;
 
   @IsString()
