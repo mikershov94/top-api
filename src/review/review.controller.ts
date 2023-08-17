@@ -48,8 +48,7 @@ export class ReviewController {
     @Param('productId') productId: string,
     @UserEmail() email: string,
   ) {
-    console.log(email);
-    this.reviewService.findByProductId(productId);
+    return this.reviewService.findByProductId(productId);
   }
 
   @Delete('byProduct/:productId')
