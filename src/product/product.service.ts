@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { ProductModel } from './product.model';
 import { CreateProductDto } from './dto/create-product.dto';
 import { FindProductDto } from './dto/find-product.dto';
@@ -47,7 +47,7 @@ export class ProductService {
         },
         {
           $lookup: {
-            from: 'Review',
+            from: 'reviewmodels',
             localField: '_id',
             foreignField: 'productId',
             as: 'review',
