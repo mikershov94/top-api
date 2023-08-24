@@ -55,8 +55,12 @@ export class ProductService {
         },
         {
           $addFields: {
-            reviewCount: { $size: '$review' },
-            reviewAvg: { $avg: '$review.rating' },
+            reviewCount: {
+              $size: '$review',
+            },
+            reviewAvg: {
+              $avg: '$review.rating',
+            },
           },
         },
       ])
