@@ -34,7 +34,7 @@ export class ProductService {
       .aggregate([
         {
           $match: {
-            categories: dto.category,
+            categories: 'Категория 1',
           },
         },
         {
@@ -43,7 +43,7 @@ export class ProductService {
           },
         },
         {
-          $limit: dto.limit,
+          $limit: 5,
         },
         {
           $lookup: {
@@ -67,5 +67,17 @@ export class ProductService {
     //   reviewCount: number;
     //   reviewAvg: number;
     // }[];
+
+    // return this.productModel
+    //   .aggregate([
+    //     { $match: { categories: 'Категория 1' } },
+    //     { $sort: { _id: -1 } },
+    //     { $limit: 5 },
+    //   ])
+    //   .lookup({ from: 'Reviewmodels' })
+    //   .project({
+    //     reviewCount: { $size: 'review' },
+    //     reviewAvg: { $avg: 'rating' },
+    //   });
   }
 }

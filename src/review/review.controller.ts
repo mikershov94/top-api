@@ -23,7 +23,7 @@ export class ReviewController {
 
   @UsePipes(new ValidationPipe({ forbidUnknownValues: true }))
   @Post('create')
-  async create(@Body() dto: Omit<ReviewModel, '_id'>) {
+  async create(@Body() dto: ReviewModel) {
     const review = await this.reviewService.create(dto);
     if (!review) {
       throw new HttpException(
