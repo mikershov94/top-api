@@ -14,10 +14,7 @@ export class ReviewService {
   // организуем методы по CRUD для работы с БД
 
   async create(dto: CreateReviewDto): Promise<ReviewModel> {
-    return this.reviewModel.create({
-      ...dto,
-      productId: new Types.ObjectId(dto.productId),
-    });
+    return this.reviewModel.create(dto);
   }
 
   async delete(id: string): Promise<ReviewModel | null> {
