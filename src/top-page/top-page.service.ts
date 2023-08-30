@@ -14,4 +14,8 @@ export class TopPageService {
   async create(dto: CreateTopPageDto) {
     return this.topPageModel.create(dto);
   }
+
+  async findPageById(id: string) {
+    return this.topPageModel.findById(id);
+  }
 }

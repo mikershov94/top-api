@@ -24,10 +24,10 @@ export class TopPageController {
     return this.topPageService.create(dto);
   }
 
-  // @Get(':id')
-  // async get(@Param('id') id: string) {
-  //   this.configService.get('TEST');
-  // }
+  @Get(':id')
+  async get(@Param('id') id: string) {
+    return this.topPageService.findPageById(id);
+  }
 
   // @Delete(':id')
   // async delete(@Param('id') id: string) {}
