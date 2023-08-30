@@ -16,6 +16,10 @@ export class TopPageService {
   }
 
   async findPageById(id: string) {
-    return this.topPageModel.findById(id);
+    return this.topPageModel.findById(id).exec();
+  }
+
+  async deletePageById(id: string) {
+    return this.topPageModel.findByIdAndDelete(id).exec();
   }
 }

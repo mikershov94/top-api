@@ -4,6 +4,7 @@ import {
   Delete,
   Get,
   HttpCode,
+  NotFoundException,
   Param,
   Patch,
   Post,
@@ -11,6 +12,7 @@ import {
 import { ConfigService } from '@nestjs/config';
 import { CreateTopPageDto } from './dto/create-top-page.dto';
 import { TopPageService } from './top-page.service';
+import { PAGE_NOT_FOUND } from './top-page.constants';
 
 @Controller('top-page')
 export class TopPageController {
@@ -26,11 +28,21 @@ export class TopPageController {
 
   @Get(':id')
   async get(@Param('id') id: string) {
-    return this.topPageService.findPageById(id);
+    const page = await this.topPageService.findPageById(id);
+    if (!page) {
+      throw new NotFoundException(PAGE_NOT_FOUND);
+    }
+
+    return page;
   }
 
-  // @Delete(':id')
-  // async delete(@Param('id') id: string) {}
+  @Delete(':id')
+  async delete(@Param('id') id: string) {
+    const deletedPage = await this.topPageService.deletePageById(id);
+    if (!deletedPage) {
+      throw new NotFoundException(PAGE_NOT_FOUND);
+    }
+  }
 
   // @Patch(':id')
   // async patch(@Param('id') id: string, @Body() dto: TopPageModel) {}
